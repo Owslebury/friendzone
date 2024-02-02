@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Find
+{% endblock %}
+
+{% block next %}?next=/find1{% endblock %}
+
+{% block content %}
+<head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <input class="form-control" type="text" id="search" placeholder="Search...">
+    <br>
+    <br>
+
+    <script>
+        const buttons = document.getElementsByClassName('language-button');
+        const searchInput = document.getElementById('search');
+        const selectedLanguages = document.getElementById('selected-items');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            for (const button of buttons) {
+                const buttonText = button.textContent.toLowerCase();
+
+                if (buttonText.includes(searchTerm)) {
+                    button.style.display = 'inline-block';
+                } else {
+                    button.style.display = 'none';
+                }
+            }
+        });
+    </script>
+
+    <div id="languages">What language(s) do you want to correspond in?</div>
+    <form method="POST">
+        {% for item in data %}
+        <button type="button" class="btn btn-light language-button" onclick="toggleLanguage('{{ item }}')">
+            {{ item }}
+        </button>
+        <input type="hidden" id={{ item }} name="selected-items" value="">
+        {% endfor %}
+        <button class ="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <script>
+        function toggleLanguage(language) {
+            var input = document.getElementById(language);
+            input.value = language;
+        }
+    </script>
+
+    <div id="selected-items">Selected: </div>
+
+    <button class ="btn btn-danger" onclick="resetLanguages()" id="reset">Reset</button>
+    <script>
+        var languages = [];
+        var languageButtons = document.querySelectorAll(".language-button");
+        var selected = document.getElementById("selected-items")
+        languageButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                toggleLanguage(button.innerText);
+                if (selected.innerText.includes(button.innerText) == false) {
+                    languages.push(button.innerText);
+                    if (selected.innerText.trim() != "Selected:") {
+                        selected.innerText += ", " + button.innerText;
+                    }
+                    else {
+                        selected.innerText += " " + button.innerText;
+                    }
+
+                }
+
+            });
+        });
+
+        function resetLanguages() {
+            var selected = document.getElementById("selected-items")
+            selected.innerText = "Selected:";
+            languages = [];
+            // Find all hidden input elements
+            var hiddenInputs = document.querySelectorAll('input[type="hidden"]');
+
+            // Loop through each hidden input element and set the value to an empty string
+            hiddenInputs.forEach(function (input) {
+                input.value = "";
+            });
+
+        }
+
+    </script>
+    
+    {% for language in currentlySelected %}
+    <script>
+        //For each of the currently selected languages make them be selected and display them in selected:
+        toggleLanguage('{{ item["language"] }}');
+        var selected = document.getElementById("selected-items");
+        var languageText = '{{ item["language"] }}';
+        if (selected.innerText.trim() === "Selected:") {
+            selected.innerText = "Selected: " + languageText;
+        } else {
+            selected.innerText += ", " + languageText;
+        }
+    </script>
+    {% endfor %}
+
+
+
+    {{ result }}
+
+</body>
+{% endblock %}

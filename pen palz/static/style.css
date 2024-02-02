@@ -1,0 +1,108 @@
+body { 
+    margin: 0;
+    padding: 0;
+}
+
+.infobox {
+    background-color: white;
+    padding: 20px;
+    width: 600px; /* Custom size */
+    text-align: center; /* Center the text */
+    position: absolute; /* Position the box */
+    top: 50%; /* Place the top edge at the vertical center */
+    left: 50%; /* Place the left edge at the horizontal center */
+    transform: translate(-50%, -50%); /* Move the box back by half its width and height */
+}
+
+#matchedProfiles {
+    margin: auto;
+    width: 50%;
+    font-size: 20px;
+    text-decoration: none;
+    color: #666;
+}
+.message.away {
+    background-color: #007AFF; /* Blue background color */
+    color: #fff; /* Text color for "home" messages */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Add padding for spacing */
+    margin: auto;
+    margin-top: 10px;
+    width: 50%;
+}
+
+#pageTitle {
+    width: 50%;
+}
+#sendMessage {
+    max-width: 300px; /* You can adjust the value to your desired width */
+    margin: 0 auto; /* Center the form on the page if needed */
+}
+
+
+/* Define the styles for "away" messages */
+.message.home {
+    background-color: lightgray; /* White background color */
+    color: #000; /* Text color for "away" messages */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Add padding for spacing */
+    margin: auto;
+    margin-top: 10px;
+    width: 50%;
+}
+
+#timestamp {
+    font-size: 10px;
+    color:lightgray;
+    
+}
+.circlePfp{
+    border-radius:50%;
+}
+.infobox h1 {
+ text-align: center; /* Center the heading */
+}
+
+header {
+font-size:30px;
+font-family: "Vintage Waves";
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align items to the start and end of the flex container */
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  text-align: right; /* Align the text to the right */
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #666;
+  padding: 5px;
+}
+
+nav a:hover {
+  color: #000;
+}
+#result {
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+

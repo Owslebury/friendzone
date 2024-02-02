@@ -1,0 +1,40 @@
+﻿{% extends "layout.html" %}
+
+{% block title %}
+    Find
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1 class="my-4">User Profile</h1>
+        <form method="POST" enctype="multipart/form-data" action="/profile">
+            <label class="btn btn-secondary">
+                <input type="file" id="file" name="file" style="display: none;">
+                Select File
+            </label>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required>{{ initialText }}</textarea>
+            </div>
+            {% if profilePicture is defined %}
+            <img src="{{ profilePicture }}" alt="Your profile picture" width="200" height="200">
+            {% endif %}
+            <div></div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}

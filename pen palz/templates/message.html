@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Message
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="pageTitle">
+        <h1>Message {{ user.first_name }}</h1>
+    </div>
+    {% for message in messages %}
+    {% if message.sender_id == user.id %}
+    <div class="message home">
+        {{message.message_content}}
+    </div>
+    {% else %}
+    <div class="message away">
+        {{message.message_content}}
+    </div>
+    {% endif %}
+
+    {% endfor %}
+    <div id="sendMessage">
+        <form method="POST">
+            <div class="form-group">
+                <textarea class="form-control" id="message" name="message" rows="1"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Send">
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}
